@@ -20,7 +20,7 @@ class _TodoItemState extends State<TodoItem> {
       child: Padding(
         padding: const EdgeInsetsGeometry.all(20.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Icon(Icons.notes_outlined, size: 40.0),
             Text(

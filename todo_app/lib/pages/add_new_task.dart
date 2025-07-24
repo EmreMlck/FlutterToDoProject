@@ -5,6 +5,6 @@ class AddNewTaskPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text("Add New Task"));
+    return Scaffold(body: Center(child: Text("Added!")));
   }
 }

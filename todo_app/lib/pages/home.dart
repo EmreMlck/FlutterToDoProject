@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               // Header
               Container(
                 width: deviceWidth,
-                height: deviceHeight / 4,
+                height: deviceHeight / 5,
                 color: Colors.purple,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -78,15 +78,18 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               // Completed Text
-              const Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Completed",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
+              SizedBox(
+                width: deviceWidth,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 10.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Completed",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
                     ),
                   ),
                 ),
@@ -107,16 +110,29 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+
               // Button at the Bottom
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const AddNewTaskPage(),
+              SizedBox(
+                height: 36.0,
+                width: 170.0,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AddNewTaskPage(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                  child: const Text(
+                    "Add New Task",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
                     ),
-                  );
-                },
-                child: const Text("Add New Task"),
+                  ),
+                ),
               ),
             ],
           ),

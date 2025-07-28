@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:todo_app/constans/button_text.dart';
 import 'package:todo_app/constans/color.dart';
+import 'package:todo_app/constans/tasktype.dart';
+import 'package:todo_app/model/task.dart';
 import 'package:todo_app/pages/add_new_task.dart';
-import 'package:todo_app/todoitem.dart';
+import 'package:todo_app/todo_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,12 +16,54 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isChecked = false;
-  List<String> todo = [
-    "Go to Work",
-    "Study on Flutter",
-    "Share Instagram Posts",
+
+  List<Task> todo = [
+    Task(
+      type: TaskType.note,
+      title: "Go to Work",
+      description: "Routine Mission",
+      isCompleted: false,
+    ),
+    Task(
+      type: TaskType.calender,
+      title: "Study on Flutter",
+      description: "Don't Forget",
+      isCompleted: false,
+    ),
+    Task(
+      type: TaskType.contest,
+      title: "Share Instagram Posts",
+      description: "Pass the Others",
+      isCompleted: false,
+    ),
   ];
-  List<String> completed = ["Social Media Shares", "Meeting", "Make Designs"];
+
+  List<Task> completed = [
+    Task(
+      type: TaskType.note,
+      title: "Social Media Shares",
+      description: "Routine Mission",
+      isCompleted: false,
+    ),
+    Task(
+      type: TaskType.calender,
+      title: "Meeting",
+      description: "Don't Forget",
+      isCompleted: false,
+    ),
+    Task(
+      type: TaskType.contest,
+      title: "Make Designs",
+      description: "Pass the Others",
+      isCompleted: false,
+    ),
+  ];
+
+  void addNewText(Task newTask) {
+    setState(() {
+      todo.add(newTask);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                       shrinkWrap: true, // takes space as it contains
                       itemCount: todo.length,
                       itemBuilder: (context, index) {
-                        return TodoItem(title: todo[index]);
+                        return TodoItem(task: todo[index]);
                       },
                     ),
                   ),
@@ -85,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Completed",
+                      "COMPLETED",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0,
@@ -104,33 +149,32 @@ class _HomePageState extends State<HomePage> {
                       shrinkWrap: true, // generally in ListView
                       itemCount: completed.length,
                       itemBuilder: (context, index) {
-                        return TodoItem(title: completed[index]);
+                        return TodoItem(task: completed[index]);
                       },
                     ),
                   ),
                 ),
               ),
-
-              // Button at the Bottom
-              SizedBox(
-                height: 36.0,
-                width: 170.0,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AddNewTaskPage(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-                  child: const Text(
-                    "Add New Task",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500,
+              // Add New Task Button Bottom
+              Padding(
+                padding: EdgeInsets.only(bottom: 4.0),
+                child: SizedBox(
+                  height: 36.0,
+                  width: 170.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => AddNewTaskPage(
+                            addNewTask: (newTask) => addNewText(newTask),
+                          ),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
                     ),
+                    child: const CustomButtonText("Add New Task"),
                   ),
                 ),
               ),

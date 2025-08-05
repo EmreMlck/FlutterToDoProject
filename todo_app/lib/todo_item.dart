@@ -11,7 +11,6 @@ class TodoItem extends StatefulWidget {
 }
 
 class _TodoItemState extends State<TodoItem> {
-  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -56,12 +55,11 @@ class _TodoItemState extends State<TodoItem> {
               ),
             ),
             Checkbox(
-              value: isChecked,
-              onChanged: (val) => {
+              value: widget.task.isCompleted,
+              onChanged: (val) {
                 setState(() {
-                  widget.task.isCompleted = !widget.task.isCompleted;
-                  isChecked = val!; // = val %100 NOT NULL !
-                }),
+                  widget.task.isCompleted = val!; // = val %100 NOT NULL !
+                });
               },
             ),
           ],

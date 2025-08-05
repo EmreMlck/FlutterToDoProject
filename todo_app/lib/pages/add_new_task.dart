@@ -20,11 +20,12 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
   TextEditingController timeController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
+  late TaskType? selectedType;
+
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
-    TaskType selectedTaskType = TaskType.note;
 
     return SafeArea(
       child: Scaffold(
@@ -101,14 +102,29 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
                   CustomGestureButton(
                     'assets/images/category.png',
                     TaskType.note,
+                    onTap: () {
+                      setState(() {
+                        selectedType = TaskType.note;
+                      });
+                    },
                   ),
                   CustomGestureButton(
                     'assets/images/categorysec.png',
                     TaskType.calender,
+                    onTap: () {
+                      setState(() {
+                        selectedType = TaskType.calender;
+                      });
+                    },
                   ),
                   CustomGestureButton(
                     'assets/images/categorythird.png',
                     TaskType.contest,
+                    onTap: () {
+                      setState(() {
+                        selectedType = TaskType.contest;
+                      });
+                    },
                   ),
                 ],
               ),
@@ -216,7 +232,7 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           Task newTask = Task(
-                            type: TaskType.calender,
+                            type: selectedType ?? TaskType.note,
                             title: titleController.text,
                             description: descriptionController.text,
                             isCompleted: false,

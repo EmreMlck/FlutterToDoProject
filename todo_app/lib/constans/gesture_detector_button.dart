@@ -11,6 +11,7 @@ class CustomGestureButton extends StatefulWidget {
     this.taskType, {
     this.onSelected,
     super.key,
+    required Null Function() onTap,
   });
 
   @override

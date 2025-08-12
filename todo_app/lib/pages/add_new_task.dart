@@ -20,7 +20,7 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
   TextEditingController timeController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  late TaskType? selectedType;
+  TaskType? selectedType;
 
   @override
   Widget build(BuildContext context) {
@@ -221,6 +221,7 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
                 ),
               ),
               // Save Button Bottom
+              /*************  ✨ Windsurf Command 🌟  *************/
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -238,6 +239,12 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
                             isCompleted: false,
                           );
                           widget.addNewTask(newTask);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Task Added!"),
+                              duration: const Duration(milliseconds: 2000),
+                            ),
+                          );
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
@@ -245,6 +252,7 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
                         ),
                         child: const CustomButtonText("Save"),
                       ),
+                      /*******  fee0f90d-1a69-40fa-abcb-30a48377c5c5  *******/
                     ),
                   ),
                 ],
